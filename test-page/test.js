@@ -1,177 +1,105 @@
-const questionsCount = 20;
-const testQuestions = [
-    'On a scale of 1 to 5, how would you rate your overall mental well-being and happiness, with 1 being the highest and 5 being the lowest?',
-    'How often do you experience feelings of joy and contentment in your daily life (1 = very often, 5 = very rarely)?',
-    'To what extent do you feel in control of your emotions and thoughts (1 = very in control, 5 = very out of control)?',
-    'How well do you sleep at night? (1 = very well, 5 = very poorly)',
-    'On a scale of 1 to 5, how would you rate your self-esteem and self-confidence, with 1 being the highest and 5 being the lowest?',
-    'How often do you experience symptoms of anxiety (1 = very rarely, 5 = very often)?',
-    'How would you rate your ability to manage stress and cope with life\'s challenges (1 = very effective, 5 = very ineffective)?',
-    'On a scale of 1 to 5, how well can you focus and concentrate on tasks, with 1 being the highest and 5 being the lowest?',
-    'How often do you feel socially connected and supported by others (1 = very often, 5 = very rarely)?',
-    'On a scale of 1 to 5, how satisfied are you with your relationships, with 1 being the highest and 5 being the lowest?',
-    'To what extent do you experience feelings of sadness or depression (1 = very rarely, 5 = very often)?',
-    'How often do you experience feelings of anger or irritability (1 = very rarely, 5 = very often)?',
-    'On a scale of 1 to 5, how well do you engage in self-care and prioritize your well-being, with 1 being the highest and 5 being the lowest?',
-    'How often do you engage in self-destructive behaviors or engage in risky activities (1 = very rarely, 5 = very often)?',
-    'On a scale of 1 to 5, how well do you communicate your emotions and feelings to others, with 1 being the highest and 5 being the lowest?',
-    'How often do you experience physical symptoms related to stress (e.g., headaches, stomachaches) (1 = very rarely, 5 = very often)?',
-    'On a scale of 1 to 5, how well do you manage your daily responsibilities and obligations, with 1 being the highest and 5 being the lowest?',
-    'How often do you experience intrusive thoughts or obsessions (1 = very rarely, 5 = very often)?',
-    'To what extent do you have a strong support system in place for emotional or mental health issues (1 = very strong, 5 = very weak)?',
-    'How open are you to seeking professional help or counseling for your mental health concerns (1 = very open, 5 = very closed)?'];
 
-function generateQuestionCard(questionNumber) {
-    const questionForm = document.querySelector('form');
+const testSymptoms = [
+    '1. Anxiety',
+    '2. Nervousness',
+    '3. Worrying',
+    '4. Irritability',
+    '5. Muscle Tension or Tightness',
+    '6. Trouble Relaxing',
+    '7. Trouble Falling or Staying Asleep </i>(Rate the most troublesome symptom)<i>',
+    '8. Fatigue or Lack of Energy',
+    '9. Problems with Concentration or Attention',
+    '10. Trouble Remembering Things',
+    '11. Shortness of Breath, Chest Tightness, or Pain, Pounding/Skipping/Racing Heartbeat <i>(Rate the most troublesome symptom)</i>',
+    '12. Stomach Upset, Nausea, Constipation, Diarrea, or Irritable Bowels <i>(Rate the most troublesome symptom)</i>',
+    '13. Dizziness, Lightheadedess, Headaches, Trembling or Shakiness <i>Rate the most troublesome symptom</i>',
+    '14. Numbness, Tingling, Excessive Sweating, Flushing, or Frequent Urination <i>(Rate the most troublesome symptom)</i>',
+    '15. Feeling Restless, Keyed Up, or On Edge',
+    '16. Anticipating or Fearing Something Bad Might Happen',
+    '17. Trouble Functioning at Home, Work, or Socially Due to Anxiety <i>(Rate the most troublesome symptom)</i>'
+]
 
-    const questionCard = document.createElement('div');
-    questionCard.classList.add('question-card');
-
-    const questionNumbers = document.createElement('div');
-    questionNumbers.classList = `question-numbers`;
-
-    const questionChoices = document.createElement('div');
-    questionChoices.classList = `question-choices`;
-
-    const choiceText = document.createElement('p');
-    choiceText.textContent = `Question #${questionNumber + 1}: ${testQuestions[questionNumber]}`;
-
-    questionCard.appendChild(choiceText);
-
-    for (let i = 1; i <= 5; i++) {
-        const choiceNum = document.createElement('p');
-        choiceNum.textContent = i;
-
-        questionNumbers.appendChild(choiceNum);
-    }
-
-    questionCard.appendChild(questionNumbers);
-
-    for (let i = 1; i <= 5; i++) {
-        const choiceNum = document.createElement('p');
-        choiceNum.textContent = i;
-
-        const radioButton = document.createElement('input');
-        radioButton.type = 'radio';
-        radioButton.checked = false;
-        radioButton.name = `question-${questionNumber}-choice`;
-        radioButton.id = `question-${questionNumber}-choice-${i}`;
-        radioButton.value = i;
-
-        if (radioButton.value == 1) {
-            radioButton.checked = true;
-        }
-
-        questionChoices.appendChild(radioButton);
-    }
-
-    questionCard.appendChild(questionChoices);
-    questionForm.appendChild(questionCard);
+const intensityCategoryPhotos = {
+    'none': 'intensity-photos/1_none.png',
+    'mild': 'intensity-photos/2_mild.png',
+    'moderate': 'intensity-photos/3_moderate.png',
+    'severe': 'intensity-photos/4_severe.png',
+    'extremeDistress': 'intensity-photos/5_extreme_distress.png',
 }
 
-function getQuestionAnswer(questionNumber) {
-    let qAnswer = [];
-    for (let i = 1; i <= 5; i++) {
-        qAnswer.push(document.querySelector(`#question-${questionNumber}-choice-${i}`))
-    }
-    qAnswer = qAnswer.filter((eachChoice) => { return eachChoice.checked === true });
-    return Number(qAnswer[0].value);
+const frequencyCategoryPhotos = {
+    'none': 'frequency-photos/1_none.png',
+    'occasionally': 'frequency-photos/2_occasionally.png',
+    'often': 'frequency-photos/3_often.png',
+    'usually': 'frequency-photos/4_usually.png',
+    'allTheTime': 'frequency-photos/5_all_the_time.png',
 }
 
-function evaluateForm() {
+// TODO: change all instances of selecting form to this constant
 
-    window.scrollTo(0, 0);
+const pageForm = document.querySelector('form');
 
-    let totalScore = 0;
-    let healthStatus = '';
-    let statusPhotoURL = '';
-    let healthStatusMessage = '';
+class ResultsPage {
 
-    const statusLevels = ['Optimal Mental Health', 'Mild Mental Health Concerns', 'Moderate Mental Health Challenges', 'Severe Mental Health Disorders', 'Mental Health Crisis'];
-    const statusMessages = ['A state of psychological well-being characterized by emotional balance, resilience, and the ability to cope with life\'s challenges effectively.',
-        'Minor and manageable emotional or psychological issues that may cause occasional distress but do not significantly impair daily functioning.',
-        'Intermediate-level psychological difficulties that may impact daily life, requiring some level of intervention or support for effective management.',
-        'Serious and often chronic mental health conditions that substantially disrupt a person\'s thoughts, emotions, and behaviors, typically necessitating comprehensive treatment and professional care.',
-        'A critical and acute state of emotional or psychological distress that may pose an immediate risk to a person\'s well - being, often requiring urgent intervention and support.'];
+    // TODO: add additional information for each category
+    // TODO: properly format the text paragraphs
+    static generateNoneResult() {
+        const noneResultPage = document.createElement('div')
+        noneResultPage.classList.add('results-card')
+        noneResultPage.classList.add('guide-card')
 
-    for (let i = 0; i < testQuestions.length; i++) {
-        totalScore += getQuestionAnswer(i);
+        noneResultPage.innerHTML = `
+            <h1>None</h1>
+        `
+
+        pageForm.appendChild(noneResultPage)
     }
 
+    static generateLowResult() {
+        const lowResultPage = document.createElement('div')
+        lowResultPage.classList.add('results-card')
+        lowResultPage.classList.add('guide-card')
 
-    if (totalScore <= questionsCount) {
-        healthStatus = statusLevels[0];
-        statusPhotoURL = 'status-photos/levelOne.png';
-        healthStatusMessage = statusMessages[0];
-    } else if (totalScore > 20 && totalScore <= 40) {
-        healthStatus = statusLevels[1];
-        statusPhotoURL = 'status-photos/levelTwo.png';
-        healthStatusMessage = statusMessages[1];
-    } else if (totalScore > 40 && totalScore <= 60) {
-        healthStatus = statusLevels[2];
-        statusPhotoURL = 'status-photos/levelThree.png';
-        healthStatusMessage = statusMessages[2];
-    } else if (totalScore > 60 && totalScore <= 80) {
-        healthStatus = statusLevels[3];
-        statusPhotoURL = 'status-photos/levelFour.png';
-        healthStatusMessage = statusMessages[3];
-    } else if (totalScore > 80) {
-        healthStatus = statusLevels[4];
-        statusPhotoURL = 'status-photos/levelFive.png';
-        healthStatusMessage = statusMessages[4];
+        lowResultPage.innerHTML = `
+            <h1>Mild(Low) level anxiety:</h1>
+            <p>Inilalarawan bilang sub-clinical or clinically non-significant, Ito ay maaaring makaapekto sa emosyonal, panlipunan at propesyonal na paggana. Ang banayad na mga sintomas ng pagkabalisa ay maaaring magpakita bilang panlipunang pagkabalisa o pagkamahiyain at maaaring maranasan sa maagang pagkabata hanggang sa pagtanda. Kung hindi natutugunan, ang banayad na pagkabalisa ay maaaring humantong sa maladaptive coping strategies o mas malubhang kondisyon sa pag-iisip.</p>
+        `
+
+        pageForm.appendChild(lowResultPage)
     }
 
-    // Clearing the form before adding results
-    const questions = document.querySelector('form');
-    questions.innerHTML = '';
+    static generateModerateResult() {
+        const moderateResultPage = document.createElement('div')
+        moderateResultPage.classList.add('results-card')
+        moderateResultPage.classList.add('guide-card')
 
-    // Adding a container that will tell us our mental health status
-    const resultsSection = document.createElement('div');
-    resultsSection.className = 'results-section';
+        moderateResultPage.innerHTML = `
+            <h1>Moderate (Medium) level anxiety:</h1>
+            <p>Ang mga taong may katamtamang antas ng pagkabalisa ay may mas madalas o patuloy na mga sintomas kaysa sa mga may banayad na pagkabalisa, ngunit mayroon pa ring mas mahusay na pang-araw-araw na paggana kaysa sa isang taong may matinding pagkabalisa o panic disorder. Halimbawa, ang mga taong may katamtamang pagkabalisa ay maaaring mag-ulat na nakakaranas ng mga sintomas tulad ng pakiramdam sa gilid, ang pagiging hindi makontrol ang kanilang pag-aalala o hindi makapagpahinga ng ilang araw o karamihan ng mga araw sa isang linggo, ngunit hindi araw-araw. Bagama’t nakakagambala ang mga sintomas ng katamtamang pagkabalisa, ang mga taong may katamtamang pagkabalisa ay maaaring magkaroon ng tagumpay sa pamamahala ng kanilang pagkabalisa sa tulong ng isang doktor o mga diskarte sa tulong sa sarili.</p>
+        `
 
-    const resultContainer = document.createElement('div');
-    resultContainer.classList = 'container status-container';
+        pageForm.appendChild(moderateResultPage)
+    }
 
-    const score = document.createElement('h2');
-    score.classList.add('score');
-    score.innerText = `${healthStatus}`;
+    static generateExtremeResult() {
+        const extremeResultPage = document.createElement('div')
+        extremeResultPage.classList.add('results-card')
+        extremeResultPage.classList.add('guide-card')
 
-    resultContainer.appendChild(score);
+        extremeResultPage.innerHTML = `
+            <h1>Extreme/Severe level anxiety</h1>
+            <p>Ang matinding pagkabalisa ay lubhang nakakapanghina, at ang mga sintomas ng matinding pagkabalisa ay nakakatugon sa mga pangunahing pamantayan sa diagnostic para sa clinically-significant anxiety disorder. Ang mga taong may matinding pagkabalisa ay karaniwang mas mataas ang marka sa mga antas ng pagkabalisa at mas mababa sa paggana. Ang mga malubhang sintomas ng pagkabalisa ay madalas ding nangyayari kasama ng malaking depresyon, na maaaring mag-ambag sa higit na kapansanan. Ang mga sintomas ng matinding pagkabalisa ay madalas at paulit-ulit at maaaring kabilang ang pagtaas ng tibok ng puso, pakiramdam ng pagkasindak at pag-alis sa lipunan. Ang mga sintomas na ito ay maaaring magresulta sa pagkawala ng trabaho at pagtaas ng mga gastos sa pangangalagang pangkalusugan. Bilang karagdagan, ang mga indibidwal na may matinding pagkabalisa ay maaaring bumaling sa alkohol at droga bilang isang paraan upang makayanan ang kanilang mga sintomas.</p>
+        `
 
-    resultsSection.appendChild(resultContainer);
+        pageForm.appendChild(extremeResultPage)
+    }
 
-    // Adding a photo that represents our current health status
-    const statusPhoto = document.createElement('img');
-    statusPhoto.src = statusPhotoURL;
-    statusPhoto.className = 'status-photo';
-
-    resultContainer.appendChild(statusPhoto);
-
-    const statusMessage = document.createElement('p');
-    statusMessage.textContent = `${healthStatusMessage}`;
-    resultContainer.appendChild(statusMessage);
-
-    questions.appendChild(resultsSection);
-
-    // Adding resources section
-    const resourcesSection = document.createElement('div');
-    resourcesSection.className = 'resources-section';
-
-    // const resourcesContainer = document.createElement('div');
-    // resourcesContainer.className = 'container ';
-
-    // const resoucesTitle = document.createElement('p');
-    // resourcesContainer.textContent = `${healthStatusMessage}`;
-    // resourcesContainer.appendChild(resoucesTitle);
-
-    // resourcesSection.appendChild(resourcesContainer);
-
-    questions.appendChild(resourcesSection);
-
-    // Adding general instructions for when someone is strugging
-    const guidesList = document.createElement('div');
-    guidesList.classList = 'container';
-    guidesList.innerHTML = `
+    static generateResources() {
+        // TODO: change guide and resources to proper contents
+        const guidesList = document.createElement('div')
+        guidesList.classList.add('results-card')
+        guidesList.classList.add('guide-card')
+        guidesList.innerHTML = `
         <h2>Here are some ways that you could improve your mental health</h2>
         <h2 class="mt-2">Prioritizing self care</h2>
         <img src="../images/self-care.png" class="guide-photo">
@@ -195,12 +123,11 @@ function evaluateForm() {
           
     `;
 
-    resourcesSection.appendChild(guidesList);
+        pageForm.appendChild(guidesList)
 
-    // Adding resources cards that links to health offices within Dagupan City
-    const professionalsList = document.createElement('div');
-    professionalsList.classList = 'container';
-    professionalsList.innerHTML = `
+        const professionalsList = document.createElement('div');
+        professionalsList.classList.add('results-card')
+        professionalsList.innerHTML = `
         <h4>Here are some places where you could find mental health professionals within Dagupan City</h4>
         <ul class="resources-list">
             <li><a href="#">Philippine Mental Health Association</a></li>
@@ -210,23 +137,183 @@ function evaluateForm() {
         </ul>
     `;
 
-    resourcesSection.appendChild(professionalsList);
+        pageForm.appendChild(professionalsList)
+    }
+
 }
 
-// Generating 20 questions
-for (let i = 0; i < testQuestions.length; i++) {
-    // DONE: create custom questions for each card, each question must be related to mental health
-    generateQuestionCard(i);
+class Form {
+
+    static generateTable() {
+        const tableBody = document.querySelector('#table-body');
+        let tableBodyContent = '';
+
+        for (let i = 0; i < testSymptoms.length; i++) {
+            tableBodyContent += `  
+        <tr>
+            <td>${testSymptoms[i]}</td>            
+            <td>
+                <select id="intensity-select-${i + 1}" class="intensity-select">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            <td>
+                <select id="frequency-select-${i + 1}" class="frequency-select">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </td>
+        </tr>
+        `
+        }
+
+        tableBody.innerHTML += tableBodyContent;
+    }
+
+    static evaluateForm(e) {
+        e.preventDefault();
+
+        let intensityValues = 0;
+        let frequencyValues = 0;
+
+        for (let i = 1; i <= testSymptoms.length; i++) {
+            const eachFreq = document.querySelector(`#intensity-select-${i}`).value;
+            const eachIntensity = document.querySelector(`#frequency-select-${i}`).value;
+
+            intensityValues += Number(eachFreq);
+            frequencyValues += Number(eachIntensity);
+        }
+
+        // DONE: after adding the values, place them within a range
+        const intensityAverage = intensityValues / testSymptoms.length
+        const frequencyAverage = frequencyValues / testSymptoms.length
+
+        let intensityCategory = ''
+        let frequencyCategory = ''
+
+        let intensityPhoto = ''
+        let frequencyPhoto = ''
+
+        // TODO: Test if photos for intensity and frequency are working properly
+        if (intensityAverage == 0.0) {
+            intensityCategory = 'None'
+            intensityPhoto = intensityCategoryPhotos.none
+        } else if (intensityAverage > 0.0 && intensityAverage < 4.0) {
+            intensityCategory = 'Mild'
+            intensityPhoto = intensityCategoryPhotos.mild
+        } else if (intensityAverage >= 4.0 && intensityAverage < 7.0) {
+            intensityCategory = 'Moderate'
+            intensityPhoto = intensityCategoryPhotos.moderate
+        } else if (intensityAverage >= 7.0 && intensityAverage < 10.0) {
+            intensityCategory = 'Severe'
+            intensityPhoto = intensityCategoryPhotos.severe
+        } else if (intensityAverage == 10.0) {
+            intensityCategory = 'Extreme distress'
+            intensityPhoto = intensityCategoryPhotos.extremeDistress
+        }
+
+        // DONE: change frequency to have its own photos
+        if (frequencyAverage == 0.0) {
+            frequencyCategory = 'None'
+            frequencyPhoto = frequencyCategoryPhotos.none
+        } else if (frequencyAverage > 0.0 && frequencyAverage < 4.0) {
+            frequencyCategory = 'Occasionally'
+            frequencyPhoto = frequencyCategoryPhotos.occasionally
+        } else if (frequencyAverage >= 4.0 && frequencyAverage < 7.0) {
+            frequencyCategory = 'Often'
+            frequencyPhoto = frequencyCategoryPhotos.often
+        } else if (frequencyAverage >= 7.0 && frequencyAverage < 10.0) {
+            frequencyCategory = 'Usually'
+            frequencyPhoto = frequencyCategoryPhotos.usually
+        } else if (frequencyAverage == 10.0) {
+            frequencyCategory = 'All the time'
+            frequencyPhoto = frequencyCategoryPhotos.allTheTime
+        }
+
+        // Removing unnecessary elements after evaluating form
+        document.querySelector('.test-title').innerHTML = ''
+        document.querySelector('.scale-card').remove()
+        document.querySelector('.question-card').remove()
+        document.querySelector('#submit-button').remove()
+
+        Form.generateResults(intensityCategory, frequencyCategory, intensityPhoto, frequencyPhoto)
+
+    }
+
+    static generateResults(intensityCategory, frequencyCategory, intensityPhoto, frequencyPhoto) {
+
+        // Make the user go to the start of the webpage
+        window.scrollTo(0, 0)
+
+        document.querySelector('.test-title').innerHTML = 'Anxiety Symptoms Results'
+
+        const intensityResultsContainer = document.createElement('div')
+        intensityResultsContainer.classList.add('results-card')
+        intensityResultsContainer.id = 'intensity-result'
+
+        document.querySelector('form').appendChild(intensityResultsContainer)
+
+        const frequencyResultsContainer = document.createElement('div')
+        frequencyResultsContainer.classList.add('results-card')
+        frequencyResultsContainer.id = 'frequency-result'
+
+        document.querySelector('form').appendChild(intensityResultsContainer)
+        document.querySelector('form').appendChild(frequencyResultsContainer)
+
+        document.querySelector('#intensity-result').innerHTML = `
+        <h2>Anxiety Intensity: ${intensityCategory}</h2>
+        <img src="${intensityPhoto}"></img>
+        `
+
+        document.querySelector('#frequency-result').innerHTML = `
+        <h2>Anxiety Frequency: ${frequencyCategory}</h2>
+        <img src="${frequencyPhoto}"></img>
+    `
+
+        // Show the appropriate information regarding each category
+        if (intensityCategory == 'None') {
+            ResultsPage.generateNoneResult()
+        } else if (intensityCategory == 'Mild') {
+            ResultsPage.generateLowResult()
+        } else if (intensityCategory == 'Moderate') {
+            ResultsPage.generateModerateResult()
+        } else if (intensityCategory == 'Severe' || intensityCategory == 'Extreme distress') {
+            ResultsPage.generateExtremeResult()
+        }
+
+        ResultsPage.generateResources()
+
+        const retakeButton = document.createElement('input')
+        retakeButton.type = 'button'
+        retakeButton.id = 'retake-button'
+        retakeButton.value = 'Retake Questionnaire'
+        retakeButton.addEventListener('click', () => {
+            location.reload() // refreshes the results of the page
+        })
+
+        document.querySelector('form').appendChild(retakeButton)
+
+    }
 }
 
-// Adding Submit button
-// <input type="button" value="Submit" id="submit-button">
-const submitButton = document.createElement('input');
-submitButton.type = 'button';
-submitButton.value = 'Submit';
-submitButton.id = 'submit-button';
-const questionForm = document.querySelector('form');
-questionForm.appendChild(submitButton);
 
-// Checking if our user submits their answers
-const submitFormButton = document.querySelector('#submit-button').addEventListener('click', evaluateForm);
+document.querySelector('#submit-button').addEventListener('click', Form.evaluateForm);
+window.onload = Form.generateTable;
