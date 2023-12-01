@@ -159,7 +159,12 @@ form {
 }
 
 .guide-card p {
-    margin: 2rem 0rem;
+    text-align: left;
+}
+
+.guide-card p,
+.guide-card h2 {
+    margin: 1rem;
 }
 
 /* .question-card,
@@ -219,12 +224,15 @@ img {
     list-style-type: square;
 }
 
-.resources-list a {
+.resources-list a,
+.results-card a {
     text-decoration: none;
     color: var(--clr-antiflash-white);
+    font-weight: bold;
 }
 
-.resources-list a:hover {
+.resources-list a:hover,
+.results-card a:hover {
     color: var(--clr-rebecca-purple);
 }
 
@@ -285,7 +293,7 @@ input[type='radio']:hover {
     transform: scale(1.1);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 576px) {
 
     html,
     body {
@@ -316,8 +324,9 @@ input[type='radio']:hover {
     .scale-card,
     .question-card,
     .results-card {
-        min-width: 25%;
-        max-width: 600px;
+        word-wrap: break-word;
+        min-width: 300px;
+        max-width: 400px;
         padding: 0.5rem;
     }
 

@@ -83,8 +83,8 @@ class ResultsPage {
 
     static generateExtremeResult() {
         const extremeResultPage = document.createElement('div')
-        extremeResultPage.classList.add('results-card')
-        extremeResultPage.classList.add('guide-card')
+        extremeResultPage.classList.add('.results-card')
+        extremeResultPage.classList.add('.guide-card')
 
         extremeResultPage.innerHTML = `
             <h1>Extreme/Severe level anxiety</h1>
@@ -95,35 +95,119 @@ class ResultsPage {
     }
 
     static generateResources() {
-        // TODO: change guide and resources to proper contents
+
+        // TODO: add logos for each resource in the list
+        const resourcesTitleCard = document.createElement('div')
+        resourcesTitleCard.classList.add('results-card')
+        resourcesTitleCard.classList.add('guide-card')
+        resourcesTitleCard.innerHTML = `
+            <h2>Hotlines and Websites for Anxiety</h2>
+        `
+
+        pageForm.appendChild(resourcesTitleCard)
+
+        const uddPsychologyCard = document.createElement('div')
+        uddPsychologyCard.classList.add('results-card')
+        uddPsychologyCard.classList.add('guide-card')
+        uddPsychologyCard.innerHTML += `
+            <h2>UNIVERSIDAD DE DAGUPAN – PSYCHOLOGY SOCIETY</h2>
+            <p>Email: spsychology@cdd.edu.ph</p>
+            <p>Facebook Page: <a href="https://www.facebook.com/UdDPsychSoc">UdD - Psychological Society</p>    
+            `
+
+        pageForm.appendChild(uddPsychologyCard)
+
+        const lnuPsychologyCard = document.createElement('div')
+        lnuPsychologyCard.classList.add('results-card')
+        lnuPsychologyCard.classList.add('guide-card')
+        lnuPsychologyCard.innerHTML += `
+            <h2>L-NU PSYCHOLOGY DEPARTMENT</h2>
+            <p>Contact number: (0075) 515-8128</p>
+            <p>Facebook Page: <a href="https://www.facebook.com/LNUPsychologySC">Psychology Student Council</p>    
+            `
+
+        pageForm.appendChild(lnuPsychologyCard)
+
+        const uddGuidanceCard = document.createElement('div')
+        uddGuidanceCard.classList.add('results-card')
+        uddGuidanceCard.classList.add('guide-card')
+        uddGuidanceCard.innerHTML += `
+            <h2>UdD Guidance (Guidance Center)</h2>
+            <p>Email: guidance@cdd.edu.ph</p>
+            <p>Facebook Page: <a href="https://www.facebook.com/guida.cen?mibextid=LQQJ4d">UdD Guidance</p>    
+            `
+
+        pageForm.appendChild(uddGuidanceCard)
+
+        const dohCard = document.createElement('div')
+        dohCard.classList.add('results-card')
+        dohCard.classList.add('guide-card')
+        dohCard.innerHTML += `
+            <h2>DEPARTMENT OF HEALTH (DOH)</h2>
+            <p>Number: 02 6517 800</p>
+            <p>Email: callcenter@doh.gov.ph</p>
+            <p>Facebook Page: <a href="https://www.facebook.com/DOHgovPH?mibextid=ZbWKwL">Department of Health (DOH)</a></p>   
+            <p>Government Page: <a href="https://doh.gov.ph">Department of Health (DOH)</a></p>   
+            `
+
+        pageForm.appendChild(dohCard)
+
+        const hamticCard = document.createElement('div')
+        hamticCard.classList.add('results-card')
+        hamticCard.classList.add('guide-card')
+        hamticCard.innerHTML += `
+            <h2>OFFICE OF THE MUNICIPAL SOCIAL WELFARE AND DEVELOPMENT OFFICER</h2>
+            <p>Contact number: 09552945243/p>
+            <p>Email: hamticmswdo@gmail.com</p>
+            <p>Facebook Page: <a href="https://www.facebook.com/mswd.lingayen">MSWD Lingayen</a></p>   
+            <p>Government Page: <a href="https://hamtic.gov.ph/office-of-the-social-welfare-and-development-officer/">Office of the Municipal Social Welfare and Development Officer</a></p>   
+            `
+
+        pageForm.appendChild(hamticCard)
+
+        const pmhaCard = document.createElement('div')
+        pmhaCard.classList.add('results-card')
+        pmhaCard.classList.add('guide-card')
+        pmhaCard.innerHTML += `
+            <h2>PHILIPPINE MENTAL HEALTH ASSOCIATION DAGUPAN-PANGASINAN CHAPTER</h2>
+            <p>Contact number: (075) 523 5467</p>
+            <p>Email: pmha_mentalhealth@yahoo.com</p>
+            <p>Facebook Page: <a href="https://www.pmhadagupan.page.tl/">Philippine Mental Health Association - Pangasinan Chapter</a></p>   
+            `
+
+        pageForm.appendChild(pmhaCard)
+
+        // TODO: add other resources left in the document
+
         const guidesList = document.createElement('div')
         guidesList.classList.add('results-card')
         guidesList.classList.add('guide-card')
         guidesList.innerHTML = `
-        <h2>Here are some ways that you could improve your mental health</h2>
-        <h2 class="mt-2">Prioritizing self care</h2>
-        <img src="../images/self-care.png" class="guide-photo">
-        <p class="justify-text mt-2">Establish a daily routine that includes adequate sleep, a balanced diet, regular exercise, and relaxation techniques like meditation or deep breathing. Taking care of your physical health can have a significant impact on your mental well-being.</p>
+            <h2>Here are some ways that you could improve your mental health</h2>
+            <h2>Prioritizing self care</h2>
+            <img src="../images/self-care.png" class="guide-photo">
+            <p class="justify-text mt-2">Establish a daily routine that includes adequate sleep, a balanced diet, regular exercise, and relaxation techniques like meditation or deep breathing. Taking care of your physical health can have a significant impact on your mental well-being.</p>
     
-        <h2 class="mt-2">Seek social support</h2>
-        <img src="../images/social-support.png" class="guide-photo">
-        <p class="justify-text mt-2">Maintain and nurture your social connections. Spend time with friends and family, and don't hesitate to reach out when you need support or someone to talk to. Social relationships can provide emotional support and a sense of belonging.</p>
+            <h2 class="mt-2">Seek social support</h2>
+            <img src="../images/social-support.png" class="guide-photo">
+            <p class="justify-text mt-2">Maintain and nurture your social connections. Spend time with friends and family, and don't hesitate to reach out when you need support or someone to talk to. Social relationships can provide emotional support and a sense of belonging.</p>
          
-        <h2 class="mt-2">Manage stress</h2>
-        <img src="../images/manage-stress.png" class="guide-photo">
-        <p class="justify-text mt-2">Develop effective stress management techniques, such as mindfulness, yoga, or progressive muscle relaxation. Identifying the sources of stress in your life and finding healthy ways to cope with them can help reduce anxiety and improve your mental health.</p>
+            <h2 class="mt-2">Manage stress</h2>
+            <img src="../images/manage-stress.png" class="guide-photo">
+            <p class="justify-text mt-2">Develop effective stress management techniques, such as mindfulness, yoga, or progressive muscle relaxation. Identifying the sources of stress in your life and finding healthy ways to cope with them can help reduce anxiety and improve your mental health.</p>
           
-        <h2 class="mt-2">Set realistic goals</h2>
-        <img src="../images/realistic-goals.png" class="guide-photo">
-        <p class="justify-text mt-2">Break down your long-term goals into smaller, achievable steps. This can help you maintain a sense of purpose, motivation, and accomplishment, which are important for mental well-being. Setting realistic expectations for yourself is key to avoiding unnecessary stress and disappointment.</p>
+            <h2 class="mt-2">Set realistic goals</h2>
+            <img src="../images/realistic-goals.png" class="guide-photo">
+            <p class="justify-text mt-2">Break down your long-term goals into smaller, achievable steps. This can help you maintain a sense of purpose, motivation, and accomplishment, which are important for mental well-being. Setting realistic expectations for yourself is key to avoiding unnecessary stress and disappointment.</p>
            
-        <h2 class="mt-2">Seek professional help</h2>
-        <img src="../images/professional-help.png" class="guide-photo">
-        <p class="justify-text mt-2">If you're struggling with persistent mental health issues, such as depression, anxiety, or other conditions, consider seeking help from a mental health professional. Therapy, counseling, or medication can be effective in treating a wide range of mental health issues. Don't hesitate to reach out to a mental health expert if needed.</p>
+            <h2 class="mt-2">Seek professional help</h2>
+            <img src="../images/professional-help.png" class="guide-photo">
+            <p class="justify-text mt-2">If you're struggling with persistent mental health issues, such as depression, anxiety, or other conditions, consider seeking help from a mental health professional. Therapy, counseling, or medication can be effective in treating a wide range of mental health issues. Don't hesitate to reach out to a mental health expert if needed.</p>
           
     `;
 
-        pageForm.appendChild(guidesList)
+        // !Commented out to make current demo look cleaner
+        // pageForm.appendChild(guidesList)
 
         const professionalsList = document.createElement('div');
         professionalsList.classList.add('results-card')
@@ -137,7 +221,8 @@ class ResultsPage {
         </ul>
     `;
 
-        pageForm.appendChild(professionalsList)
+        // !Commented out to make current demo look cleaner
+        // pageForm.appendChild(professionalsList)
     }
 
 }
