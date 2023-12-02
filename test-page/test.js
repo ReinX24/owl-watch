@@ -43,17 +43,17 @@ class ResultsPage {
 
     // TODO: add additional information for each category
     // TODO: properly format the text paragraphs
-    static generateNoneResult() {
-        const noneResultPage = document.createElement('div')
-        noneResultPage.classList.add('results-card')
-        noneResultPage.classList.add('guide-card')
+    // static generateNoneResult() {
+    // const noneResultPage = document.createElement('div')
+    // noneResultPage.classList.add('results-card')
+    // noneResultPage.classList.add('guide-card')
 
-        noneResultPage.innerHTML = `
-            <h1>None</h1>
-        `
+    // noneResultPage.innerHTML = `
+    // <h1>None</h1>
+    // `
 
-        pageForm.appendChild(noneResultPage)
-    }
+    // pageForm.appendChild(noneResultPage)
+    // }
 
     static generateLowResult() {
         const lowResultPage = document.createElement('div')
@@ -96,6 +96,29 @@ class ResultsPage {
 
     static generateResources() {
 
+        const guidesList = document.createElement('div')
+        guidesList.classList.add('results-card')
+        guidesList.classList.add('guide-card')
+        guidesList.innerHTML = `
+            <h2>Ways to improve your mental health</h2>
+            <h2>Prioritizing self care</h2>
+            <img src="../images/self-care.png" class="guide-photo">
+    
+            <h2>Seek social support</h2>
+            <img src="../images/social-support.png" class="guide-photo">
+         
+            <h2>Manage stress</h2>
+            <img src="../images/manage-stress.png" class="guide-photo">
+          
+            <h2>Set realistic goals</h2>
+            <img src="../images/realistic-goals.png" class="guide-photo">
+           
+            <h2 >Seek professional help</h2>
+            <img src="../images/professional-help.png" class="guide-photo">
+    `;
+
+        pageForm.appendChild(guidesList)
+
         // TODO: add logos for each resource in the list
         const resourcesTitleCard = document.createElement('div')
         resourcesTitleCard.classList.add('results-card')
@@ -111,6 +134,8 @@ class ResultsPage {
         uddPsychologyCard.classList.add('guide-card')
         uddPsychologyCard.innerHTML += `
             <h2>UNIVERSIDAD DE DAGUPAN – PSYCHOLOGY SOCIETY</h2>
+            // TODO: add photo for UdD psychology society, photo pending
+            <img src="resources-logos/lyceum-northwestern-university-logo.png" class="logo-img">
             <p>Email: spsychology@cdd.edu.ph</p>
             <p>Facebook Page: <a href="https://www.facebook.com/UdDPsychSoc">UdD - Psychological Society</p>    
             `
@@ -122,6 +147,7 @@ class ResultsPage {
         lnuPsychologyCard.classList.add('guide-card')
         lnuPsychologyCard.innerHTML += `
             <h2>L-NU PSYCHOLOGY DEPARTMENT</h2>
+            <img src="resources-logos/lyceum-northwestern-university-logo.png" class="logo-img">
             <p>Contact number: (0075) 515-8128</p>
             <p>Facebook Page: <a href="https://www.facebook.com/LNUPsychologySC">Psychology Student Council</p>    
             `
@@ -132,7 +158,8 @@ class ResultsPage {
         uddGuidanceCard.classList.add('results-card')
         uddGuidanceCard.classList.add('guide-card')
         uddGuidanceCard.innerHTML += `
-            <h2>UdD Guidance (Guidance Center)</h2>
+            <h2>UDD GUIDANCE (Guidance Center)</h2>
+            <img src="resources-logos/udd-guidance-logo.png" class="logo-img">
             <p>Email: guidance@cdd.edu.ph</p>
             <p>Facebook Page: <a href="https://www.facebook.com/guida.cen?mibextid=LQQJ4d">UdD Guidance</p>    
             `
@@ -144,6 +171,7 @@ class ResultsPage {
         dohCard.classList.add('guide-card')
         dohCard.innerHTML += `
             <h2>DEPARTMENT OF HEALTH (DOH)</h2>
+            <img src="resources-logos/doh-logo.png" class="logo-img">
             <p>Number: 02 6517 800</p>
             <p>Email: callcenter@doh.gov.ph</p>
             <p>Facebook Page: <a href="https://www.facebook.com/DOHgovPH?mibextid=ZbWKwL">Department of Health (DOH)</a></p>   
@@ -157,6 +185,7 @@ class ResultsPage {
         hamticCard.classList.add('guide-card')
         hamticCard.innerHTML += `
             <h2>OFFICE OF THE MUNICIPAL SOCIAL WELFARE AND DEVELOPMENT OFFICER</h2>
+            <img src="resources-logos/mswd-logo.png" class="logo-img">
             <p>Contact number: 09552945243/p>
             <p>Email: hamticmswdo@gmail.com</p>
             <p>Facebook Page: <a href="https://www.facebook.com/mswd.lingayen">MSWD Lingayen</a></p>   
@@ -170,6 +199,7 @@ class ResultsPage {
         pmhaCard.classList.add('guide-card')
         pmhaCard.innerHTML += `
             <h2>PHILIPPINE MENTAL HEALTH ASSOCIATION DAGUPAN-PANGASINAN CHAPTER</h2>
+            <img src="resources-logos/pmha-logo.png" class="logo-img">
             <p>Contact number: (075) 523 5467</p>
             <p>Email: pmha_mentalhealth@yahoo.com</p>
             <p>Facebook Page: <a href="https://www.pmhadagupan.page.tl/">Philippine Mental Health Association - Pangasinan Chapter</a></p>   
@@ -177,37 +207,35 @@ class ResultsPage {
 
         pageForm.appendChild(pmhaCard)
 
-        // TODO: add other resources left in the document
+        const dswdCard = document.createElement('div')
+        dswdCard.classList.add('results-card')
+        dswdCard.classList.add('guide-card')
+        dswdCard.innerHTML += `
+            <h2>DEPARTMENT OF SOCIAL WELFARE AND DEVELOPMENT FIELD OFFICE 1</h2>
+            <img src="resources-logos/dwsd-office-logo.jpg" class="logo-img">
+            <p>Telefax number: (072) 888-2184</p>
+            <p>Contact number: +63 945-823-7218 or +63 961-548-8850</p>
+            <p>Email: sapfo1.helpdesk@gmail.com</p>
+            <p>Facebook Page: <a href="https://www.facebook.com/dswdfo1?mibextid=9R9pXO">DSWD Field Office 1</a></p>   
+            <p>Government Page: <a href="https://fo1.dswd.gov.ph/">DWSD Field Office 1</a></p>   
+            `
 
-        const guidesList = document.createElement('div')
-        guidesList.classList.add('results-card')
-        guidesList.classList.add('guide-card')
-        guidesList.innerHTML = `
-            <h2>Here are some ways that you could improve your mental health</h2>
-            <h2>Prioritizing self care</h2>
-            <img src="../images/self-care.png" class="guide-photo">
-            <p class="justify-text mt-2">Establish a daily routine that includes adequate sleep, a balanced diet, regular exercise, and relaxation techniques like meditation or deep breathing. Taking care of your physical health can have a significant impact on your mental well-being.</p>
-    
-            <h2 class="mt-2">Seek social support</h2>
-            <img src="../images/social-support.png" class="guide-photo">
-            <p class="justify-text mt-2">Maintain and nurture your social connections. Spend time with friends and family, and don't hesitate to reach out when you need support or someone to talk to. Social relationships can provide emotional support and a sense of belonging.</p>
-         
-            <h2 class="mt-2">Manage stress</h2>
-            <img src="../images/manage-stress.png" class="guide-photo">
-            <p class="justify-text mt-2">Develop effective stress management techniques, such as mindfulness, yoga, or progressive muscle relaxation. Identifying the sources of stress in your life and finding healthy ways to cope with them can help reduce anxiety and improve your mental health.</p>
-          
-            <h2 class="mt-2">Set realistic goals</h2>
-            <img src="../images/realistic-goals.png" class="guide-photo">
-            <p class="justify-text mt-2">Break down your long-term goals into smaller, achievable steps. This can help you maintain a sense of purpose, motivation, and accomplishment, which are important for mental well-being. Setting realistic expectations for yourself is key to avoiding unnecessary stress and disappointment.</p>
-           
-            <h2 class="mt-2">Seek professional help</h2>
-            <img src="../images/professional-help.png" class="guide-photo">
-            <p class="justify-text mt-2">If you're struggling with persistent mental health issues, such as depression, anxiety, or other conditions, consider seeking help from a mental health professional. Therapy, counseling, or medication can be effective in treating a wide range of mental health issues. Don't hesitate to reach out to a mental health expert if needed.</p>
-          
-    `;
+        pageForm.appendChild(dswdCard)
 
-        // !Commented out to make current demo look cleaner
-        // pageForm.appendChild(guidesList)
+        const dtrcDagupanCard = document.createElement('div')
+        dtrcDagupanCard.classList.add('results-card')
+        dtrcDagupanCard.classList.add('guide-card')
+        dtrcDagupanCard.innerHTML += `
+            <h2>DOH DRUG TREATMENT AND REHABILITATION CENTER DAGUPAN</h2>
+            <img src="resources-logos/dtrc-dagupan-logo.jpg" class="logo-img">
+            <p>Contact number: (075) 653 9876</p>
+            <p>Email: coh@dtrcdagupan.doh.gov.ph</p>
+            <p>Facebook Page: <a href="https://www.facebook.com/dohdtrcdagupan?mibextid=rS40aB7S9Ucbxw6v">DTRC Dagupan</a></p>   
+            <p>Government Page: <a href="https://dtrcdagupan.doh.gov.ph/">DTRC Dagupan</a></p>   
+            `
+
+        pageForm.appendChild(dtrcDagupanCard)
+
 
         const professionalsList = document.createElement('div');
         professionalsList.classList.add('results-card')
@@ -374,9 +402,10 @@ class Form {
     `
 
         // Show the appropriate information regarding each category
-        if (intensityCategory == 'None') {
-            ResultsPage.generateNoneResult()
-        } else if (intensityCategory == 'Mild') {
+        // if (intensityCategory == 'None') {
+        // ResultsPage.generateNoneResult()
+        // } 
+        if (intensityCategory == 'Mild') {
             ResultsPage.generateLowResult()
         } else if (intensityCategory == 'Moderate') {
             ResultsPage.generateModerateResult()

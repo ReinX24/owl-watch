@@ -144,7 +144,7 @@ form {
 .question-card,
 .results-card {
     margin: 1rem;
-    padding: 1rem;
+    padding: 1.5rem;
     border: 1px solid var(--clr-antiflash-white);
     border-radius: 8px;
     background: linear-gradient(to right, var(--clr-navy-blue), var(--clr-rebecca-purple));
@@ -156,10 +156,6 @@ form {
 .question-numbers {
     display: flex;
     flex-direction: column;
-}
-
-.guide-card p {
-    text-align: left;
 }
 
 .guide-card p,
@@ -214,9 +210,13 @@ form {
     margin-top: 2rem;
 } */
 
-img {
-    max-width: 128px;
+.results-card img {
+    max-width: 200px;
     margin: 0 auto;
+}
+
+.results-card .guide-photo {
+    margin-bottom: 4rem;
 }
 
 .resources-list {
@@ -226,7 +226,7 @@ img {
 
 .resources-list a,
 .results-card a {
-    text-decoration: none;
+    text-decoration: underline;
     color: var(--clr-antiflash-white);
     font-weight: bold;
 }
