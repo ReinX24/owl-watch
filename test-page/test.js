@@ -42,7 +42,6 @@ const pageForm = document.querySelector('form');
 class ResultsPage {
 
     // TODO: add additional information for each category
-    // TODO: properly format the text paragraphs
     // static generateNoneResult() {
     // const noneResultPage = document.createElement('div')
     // noneResultPage.classList.add('results-card')
@@ -62,10 +61,14 @@ class ResultsPage {
 
         lowResultPage.innerHTML = `
             <h1>Mild(Low) level anxiety:</h1>
-            <p>Inilalarawan bilang sub-clinical or clinically non-significant, Ito ay maaaring makaapekto sa emosyonal, panlipunan at propesyonal na paggana. Ang banayad na mga sintomas ng pagkabalisa ay maaaring magpakita bilang panlipunang pagkabalisa o pagkamahiyain at maaaring maranasan sa maagang pagkabata hanggang sa pagtanda. Kung hindi natutugunan, ang banayad na pagkabalisa ay maaaring humantong sa maladaptive coping strategies o mas malubhang kondisyon sa pag-iisip.</p>
-        `
+            <p>Inilalarawan bilang sub-clinical or clinically non-significant, Ito ay maaaring makaapekto sa emosyonal, panlipunan at propesyonal na paggana.</p>
+            <p>Ang banayad na mga sintomas ng pagkabalisa ay maaaring magpakita bilang panlipunang pagkabalisa o pagkamahiyain at maaaring maranasan sa maagang pagkabata hanggang sa pagtanda.</p>
+            <p>Kung hindi natutugunan, ang banayad na pagkabalisa ay maaaring humantong sa maladaptive coping strategies o mas malubhang kondisyon sa pag-iisip.</p>
+            `
 
         pageForm.appendChild(lowResultPage)
+
+        // TODO: add 'More Information' button that leads the user to a page that provides them with more information regarding their category result
     }
 
     static generateModerateResult() {
@@ -75,21 +78,28 @@ class ResultsPage {
 
         moderateResultPage.innerHTML = `
             <h1>Moderate (Medium) level anxiety:</h1>
-            <p>Ang mga taong may katamtamang antas ng pagkabalisa ay may mas madalas o patuloy na mga sintomas kaysa sa mga may banayad na pagkabalisa, ngunit mayroon pa ring mas mahusay na pang-araw-araw na paggana kaysa sa isang taong may matinding pagkabalisa o panic disorder. Halimbawa, ang mga taong may katamtamang pagkabalisa ay maaaring mag-ulat na nakakaranas ng mga sintomas tulad ng pakiramdam sa gilid, ang pagiging hindi makontrol ang kanilang pag-aalala o hindi makapagpahinga ng ilang araw o karamihan ng mga araw sa isang linggo, ngunit hindi araw-araw. Bagama’t nakakagambala ang mga sintomas ng katamtamang pagkabalisa, ang mga taong may katamtamang pagkabalisa ay maaaring magkaroon ng tagumpay sa pamamahala ng kanilang pagkabalisa sa tulong ng isang doktor o mga diskarte sa tulong sa sarili.</p>
-        `
+            <p>Ang mga taong may katamtamang antas ng pagkabalisa ay may mas madalas o patuloy na mga sintomas kaysa sa mga may banayad na pagkabalisa, ngunit mayroon pa ring mas mahusay na pang-araw-araw na paggana kaysa sa isang taong may matinding pagkabalisa o panic disorder.</p>
+            <p>Halimbawa, ang mga taong may katamtamang pagkabalisa ay maaaring mag-ulat na nakakaranas ng mga sintomas tulad ng pakiramdam sa gilid, ang pagiging hindi makontrol ang kanilang pag-aalala o hindi makapagpahinga ng ilang araw o karamihan ng mga araw sa isang linggo, ngunit hindi araw-araw.</p>
+            <p>Bagama’t nakakagambala ang mga sintomas ng katamtamang pagkabalisa, ang mga taong may katamtamang pagkabalisa ay maaaring magkaroon ng tagumpay sa pamamahala ng kanilang pagkabalisa sa tulong ng isang doktor o mga diskarte sa tulong sa sarili.</p>
+            `
 
         pageForm.appendChild(moderateResultPage)
     }
 
     static generateExtremeResult() {
         const extremeResultPage = document.createElement('div')
-        extremeResultPage.classList.add('.results-card')
-        extremeResultPage.classList.add('.guide-card')
+        extremeResultPage.classList.add('results-card')
+        extremeResultPage.classList.add('guide-card')
 
         extremeResultPage.innerHTML = `
             <h1>Extreme/Severe level anxiety</h1>
-            <p>Ang matinding pagkabalisa ay lubhang nakakapanghina, at ang mga sintomas ng matinding pagkabalisa ay nakakatugon sa mga pangunahing pamantayan sa diagnostic para sa clinically-significant anxiety disorder. Ang mga taong may matinding pagkabalisa ay karaniwang mas mataas ang marka sa mga antas ng pagkabalisa at mas mababa sa paggana. Ang mga malubhang sintomas ng pagkabalisa ay madalas ding nangyayari kasama ng malaking depresyon, na maaaring mag-ambag sa higit na kapansanan. Ang mga sintomas ng matinding pagkabalisa ay madalas at paulit-ulit at maaaring kabilang ang pagtaas ng tibok ng puso, pakiramdam ng pagkasindak at pag-alis sa lipunan. Ang mga sintomas na ito ay maaaring magresulta sa pagkawala ng trabaho at pagtaas ng mga gastos sa pangangalagang pangkalusugan. Bilang karagdagan, ang mga indibidwal na may matinding pagkabalisa ay maaaring bumaling sa alkohol at droga bilang isang paraan upang makayanan ang kanilang mga sintomas.</p>
-        `
+            <p>Ang matinding pagkabalisa ay lubhang nakakapanghina, at ang mga sintomas ng matinding pagkabalisa ay nakakatugon sa mga pangunahing pamantayan sa diagnostic para sa clinically-significant anxiety disorder.</p>
+            <p>Ang mga taong may matinding pagkabalisa ay karaniwang mas mataas ang marka sa mga antas ng pagkabalisa at mas mababa sa paggana.</p>
+            <p>Ang mga malubhang sintomas ng pagkabalisa ay madalas ding nangyayari kasama ng malaking depresyon, na maaaring mag-ambag sa higit na kapansanan.</p>
+            <p>Ang mga sintomas ng matinding pagkabalisa ay madalas at paulit-ulit at maaaring kabilang ang pagtaas ng tibok ng puso, pakiramdam ng pagkasindak at pag-alis sa lipunan.</p>
+            <p>Ang mga sintomas na ito ay maaaring magresulta sa pagkawala ng trabaho at pagtaas ng mga gastos sa pangangalagang pangkalusugan.</p>
+            <p>Bilang karagdagan, ang mga indibidwal na may matinding pagkabalisa ay maaaring bumaling sa alkohol at droga bilang isang paraan upang makayanan ang kanilang mga sintomas.</p>
+            `
 
         pageForm.appendChild(extremeResultPage)
     }
@@ -119,7 +129,6 @@ class ResultsPage {
 
         pageForm.appendChild(guidesList)
 
-        // TODO: add logos for each resource in the list
         const resourcesTitleCard = document.createElement('div')
         resourcesTitleCard.classList.add('results-card')
         resourcesTitleCard.classList.add('guide-card')
@@ -134,8 +143,7 @@ class ResultsPage {
         uddPsychologyCard.classList.add('guide-card')
         uddPsychologyCard.innerHTML += `
             <h2>UNIVERSIDAD DE DAGUPAN – PSYCHOLOGY SOCIETY</h2>
-            // TODO: add photo for UdD psychology society, photo pending
-            <img src="resources-logos/lyceum-northwestern-university-logo.png" class="logo-img">
+            <img src="resources-logos/udd-psych-logo.png" class="logo-img">
             <p>Email: spsychology@cdd.edu.ph</p>
             <p>Facebook Page: <a href="https://www.facebook.com/UdDPsychSoc">UdD - Psychological Society</p>    
             `
@@ -421,6 +429,7 @@ class Form {
         retakeButton.value = 'Retake Questionnaire'
         retakeButton.addEventListener('click', () => {
             location.reload() // refreshes the results of the page
+            window.scrollTo(0, 0) // makes user go to the start of the page
         })
 
         document.querySelector('form').appendChild(retakeButton)

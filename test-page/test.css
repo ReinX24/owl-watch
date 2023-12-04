@@ -219,6 +219,10 @@ form {
     margin-bottom: 4rem;
 }
 
+.results-card p {
+    text-align: justify;
+}
+
 .resources-list {
     text-align: left;
     list-style-type: square;
