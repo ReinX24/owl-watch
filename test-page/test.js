@@ -68,6 +68,9 @@ class ResultsPage {
 
         pageForm.appendChild(lowResultPage)
 
+        this.subdueAnxietyCard()
+        this.reminderMessageCard()
+
         // TODO: add 'More Information' button that leads the user to a page that provides them with more information regarding their category result
     }
 
@@ -84,6 +87,10 @@ class ResultsPage {
             `
 
         pageForm.appendChild(moderateResultPage)
+
+        this.subdueAnxietyCard()
+        this.reminderMessageCard()
+
     }
 
     static generateExtremeResult() {
@@ -102,6 +109,48 @@ class ResultsPage {
             `
 
         pageForm.appendChild(extremeResultPage)
+
+        this.subdueAnxietyCard()
+        this.reminderMessageCard()
+
+    }
+
+    static subdueAnxietyCard() {
+        const subdueAnxietyCard = document.createElement('div')
+        subdueAnxietyCard.classList.add('results-card')
+        subdueAnxietyCard.classList.add('guide-card')
+
+        subdueAnxietyCard.innerHTML = `
+            <h2>Mga paraan na maaaring subukan ng mga indibidwal upang maibsan ang kanilang anxiety:</h2>
+            <ul>
+                <li>Pagsasanay sa Malalim na Paghinga</li> 
+                <li>Mindfulness Meditation</li>
+                <li>Visualization</li>
+                <li>Journaling</li>
+                <li>Pag-eehersisyo</li>
+                <li>Suporta ng Kaibigan at Pamilya</li>
+                <li>Relaxation techniques</li>
+                <li>Propesyonal na Tulong</li>
+            </ul>
+            `
+
+        pageForm.appendChild(subdueAnxietyCard)
+
+    }
+
+    static reminderMessageCard() {
+        const reminderCard = document.createElement('div')
+        reminderCard.classList.add('results-card')
+        reminderCard.classList.add('guide-card')
+
+        reminderCard.innerHTML = `
+            <h1>Paalala</h1>
+            <p>If symptoms persist, consult your doctor or make an appointment in the neareast hospital or psychological institute.</p> 
+            <p>Ang mga nakalathalang impormasyon sa website na ito ay maaaring gamitin sa pangunahing lunas lamang ngunit hindi ito ang solusyon sa pagkabalisa.</p>
+            <p>Ang pangunahing layunin ng website na ito ay mag bigay ng impormasyon at hikayatin ang mga lahat na kumonsulta sa mga propesyonal na doktor hinggil sa mga antas ng pagkabalisa.</p>
+        `
+
+        pageForm.appendChild(reminderCard)
     }
 
     static generateResources() {
@@ -390,14 +439,14 @@ class Form {
         intensityResultsContainer.classList.add('results-card')
         intensityResultsContainer.id = 'intensity-result'
 
-        document.querySelector('form').appendChild(intensityResultsContainer)
+        pageForm.appendChild(intensityResultsContainer)
 
         const frequencyResultsContainer = document.createElement('div')
         frequencyResultsContainer.classList.add('results-card')
         frequencyResultsContainer.id = 'frequency-result'
 
-        document.querySelector('form').appendChild(intensityResultsContainer)
-        document.querySelector('form').appendChild(frequencyResultsContainer)
+        pageForm.appendChild(intensityResultsContainer)
+        pageForm.appendChild(frequencyResultsContainer)
 
         document.querySelector('#intensity-result').innerHTML = `
         <h2>Anxiety Intensity: ${intensityCategory}</h2>
@@ -432,7 +481,7 @@ class Form {
             window.scrollTo(0, 0) // makes user go to the start of the page
         })
 
-        document.querySelector('form').appendChild(retakeButton)
+        pageForm.appendChild(retakeButton)
 
     }
 }

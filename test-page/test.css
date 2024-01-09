@@ -106,9 +106,9 @@ header {
 }
 
 .showcase {
-    padding: 4rem 2rem;
+    padding: 8rem 2rem;
     text-align: center;
-    background-image: url(images/owlWatchShowcasePhoto.jpg);
+    background-image: url(../images/privacyBackgroundPhoto.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover
@@ -150,6 +150,11 @@ form {
     background: linear-gradient(to right, var(--clr-navy-blue), var(--clr-rebecca-purple));
     min-width: 600px;
     max-width: 600px;
+}
+
+.results-card ul {
+    text-align: left;
+    margin: 1rem 0rem;
 }
 
 .scale-card,
