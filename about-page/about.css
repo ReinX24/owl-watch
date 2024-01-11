@@ -200,6 +200,16 @@ header {
     line-height: 2rem;
 }
 
+.credits-link {
+    text-decoration: underline;
+    color: var(--clr-navy-blue);
+    font-weight: bold;
+}
+
+.credits-link:hover {
+    color: var(--clr-rebecca-purple);
+}
+
 @media (max-width: 768px) {
 
     .nav,
